@@ -9,8 +9,8 @@ namespace Corvus.AzureFunctionsKeepAlive.Host
     using System.Linq;
     using System.Threading.Tasks;
     using Corvus.AzureFunctionsKeepAlive.Host.Internal;
+    using Corvus.Monitoring.Instrumentation;
     using Microsoft.Azure.WebJobs;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
 
     /// <summary>
@@ -20,16 +20,27 @@ namespace Corvus.AzureFunctionsKeepAlive.Host
     {
         private readonly TargetUri[] targetUris;
         private readonly UriPoller uriPoller;
+        private readonly IExceptionsInstrumentation<KeepAliveTrigger> exceptionsInstrumentation;
 
         /// <summary>
         /// Creates a new instance of the <see cref="KeepAliveTrigger"/> class.
         /// </summary>
         /// <param name="targetUris">Configution for the function.</param>
         /// <param name="uriPoller">Polling helper.</param>
-        public KeepAliveTrigger(TargetUri[] targetUris, UriPoller uriPoller)
+        /// <param name="exceptionsInstrumentation">The exception instrumentation service.</param>
+        public KeepAliveTrigger(
+            TargetUri[] targetUris,
+            UriPoller uriPoller,
+            IExceptionsInstrumentation<KeepAliveTrigger> exceptionsInstrumentation)
         {
-            this.targetUris = targetUris ?? throw new ArgumentNullException(nameof(targetUris));
-            this.uriPoller = uriPoller ?? throw new ArgumentNullException(nameof(uriPoller));
+            this.targetUris = targetUris
+                ?? throw new ArgumentNullException(nameof(targetUris));
+
+            this.uriPoller = uriPoller
+                ?? throw new ArgumentNullException(nameof(uriPoller));
+
+            this.exceptionsInstrumentation = exceptionsInstrumentation
+                ?? throw new ArgumentNullException(nameof(exceptionsInstrumentation));
         }
 
         /// <summary>
@@ -56,6 +67,16 @@ namespace Corvus.AzureFunctionsKeepAlive.Host
             }
             catch (Exception ex)
             {
+                var instrumentationProperties = new Dictionary<string, string>
+                {
+                    { "TargetUriName", targetUri?.Name },
+                    { "TargetUri", targetUri?.Uri },
+                };
+
+                this.exceptionsInstrumentation.ReportException(
+                    ex,
+                    new AdditionalInstrumentationDetail(instrumentationProperties, null));
+
                 log.LogError(
                     "Unexpected exception executing logger for target '{targetName}': {exception}",
                     targetUri.Name,

@@ -49,6 +49,10 @@ namespace Corvus.AzureFunctionsKeepAlive.Host
                         AzureServicesAuthConnectionString = config["AzureServicesAuthConnectionString"],
                     };
                 });
+
+            services.AddApplicationInsightsInstrumentationTelemetry();
+            services.AddInstrumentation();
+
             services.AddSingleton<UriPoller>();
         }
     }
