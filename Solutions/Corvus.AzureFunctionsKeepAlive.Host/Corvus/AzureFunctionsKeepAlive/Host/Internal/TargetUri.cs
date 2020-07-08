@@ -20,7 +20,7 @@ namespace Corvus.AzureFunctionsKeepAlive.Host.Internal
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the Id of the AAAD resource to use when authenticating.
+        /// Gets or sets the Id of the AAD resource to use when authenticating.
         /// </summary>
         public string ResourceForAadAuthentication { get; set; }
     }
