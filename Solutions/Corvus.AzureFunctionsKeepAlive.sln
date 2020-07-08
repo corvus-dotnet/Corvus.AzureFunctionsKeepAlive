@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corvus.AzureFunctionsKeepAlive.Host", "Corvus.AzureFunctionsKeepAlive.Host\Corvus.AzureFunctionsKeepAlive.Host.csproj", "{B79226A6-58A4-4B82-8D91-165B96D5D1F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B79226A6-58A4-4B82-8D91-165B96D5D1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B79226A6-58A4-4B82-8D91-165B96D5D1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B79226A6-58A4-4B82-8D91-165B96D5D1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B79226A6-58A4-4B82-8D91-165B96D5D1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {299BF302-8B96-411B-AC68-02A13C02A1AD}
+	EndGlobalSection
+EndGlobal
