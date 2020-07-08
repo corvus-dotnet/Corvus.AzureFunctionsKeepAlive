@@ -4,8 +4,10 @@
 
 namespace Corvus.AzureFunctionsKeepAlive.Host.Internal
 {
+    using System;
     using System.Diagnostics;
-    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using Corvus.Identity.ManagedServiceIdentity.ClientAuthentication;
     using Microsoft.Extensions.Logging;
@@ -15,6 +17,7 @@ namespace Corvus.AzureFunctionsKeepAlive.Host.Internal
     /// </summary>
     public class UriPoller
     {
+        private readonly HttpClient httpClient;
         private readonly IServiceIdentityTokenSource tokenSource;
         private readonly ILogger<UriPoller> logger;
 
@@ -25,8 +28,10 @@ namespace Corvus.AzureFunctionsKeepAlive.Host.Internal
         /// <param name="logger">The logger.</param>
         public UriPoller(IServiceIdentityTokenSource tokenSource, ILogger<UriPoller> logger)
         {
-            this.tokenSource = tokenSource;
-            this.logger = logger;
+            this.tokenSource = tokenSource ?? throw new ArgumentNullException(nameof(tokenSource));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+            this.httpClient = HttpClientFactory.Create();
         }
 
         /// <summary>
@@ -38,48 +43,41 @@ namespace Corvus.AzureFunctionsKeepAlive.Host.Internal
         {
             if (target == null)
             {
-                throw new System.ArgumentNullException(nameof(target));
+                throw new ArgumentNullException(nameof(target));
             }
 
             if (string.IsNullOrEmpty(target.Uri))
             {
-                throw new System.ArgumentException(nameof(target.Uri));
+                throw new ArgumentException(nameof(target.Uri));
             }
 
-            var request = (HttpWebRequest)WebRequest.Create(target.Uri);
-            request.Method = "GET";
+            var message = new HttpRequestMessage(HttpMethod.Get, target.Uri);
 
             if (!string.IsNullOrEmpty(target.ResourceForAadAuthentication))
             {
                 string authToken = await this.tokenSource.GetAccessToken(target.ResourceForAadAuthentication).ConfigureAwait(false);
-                request.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {authToken}");
+                message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
             }
 
             var sw = new Stopwatch();
             sw.Start();
+            HttpResponseMessage response = await this.httpClient.SendAsync(message).ConfigureAwait(false);
+            sw.Stop();
 
-            try
+            if (response.IsSuccessStatusCode)
             {
-                var response = (HttpWebResponse)request.GetResponse();
-                sw.Stop();
-
                 this.logger.LogInformation(
                     "Successfully requested endpoint '{endpointName}' in '{requestTime}'ms",
                     target.Name,
                     sw.ElapsedMilliseconds);
             }
-            catch (WebException ex)
+            else
             {
-                sw.Stop();
-
-                var exceptionResponse = (HttpWebResponse)ex.Response;
-
                 this.logger.LogInformation(
-                    "Failed to request endpoint '{endpointName}'. Status code '{responseCode}' was returned in '{requestTime}'ms with message '{responseMessage}'",
+                    "Failed to request endpoint '{endpointName}'. Status code '{responseCode}' was returned in '{requestTime}'ms.",
                     target.Name,
-                    exceptionResponse.StatusCode,
-                    sw.ElapsedMilliseconds,
-                    exceptionResponse.StatusDescription);
+                    response.StatusCode,
+                    sw.ElapsedMilliseconds);
             }
         }
     }
