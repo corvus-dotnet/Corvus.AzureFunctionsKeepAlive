@@ -1,0 +1,32 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AzureServicesAuthConnectionString": null,
+
+    "TargetUris:0:Uri": "http://localhost:7071/swagger",
+    "TargetUris:0:Name": "Tenancy",
+    "TargetUris:0:ResourceForAadAuthentication": "",
+
+    "TargetUris:1:Uri": "http://localhost:7073/swagger",
+    "TargetUris:1:Name": "Workflow Ingestion",
+    "TargetUris:1:ResourceForAadAuthentication": "",
+
+    "TargetUris:2:Uri": "http://localhost:7075/swagger",
+    "TargetUris:2:Name": "Workflow Engine",
+    "TargetUris:2:ResourceForAadAuthentication": "",
+
+    "TargetUris:3:Uri": "http://localhost:7077/swagger",
+    "TargetUris:3:Name": "Operations Status",
+    "TargetUris:3:ResourceForAadAuthentication": "",
+
+    "TargetUris:4:Uri": "http://localhost:7078/swagger",
+    "TargetUris:4:Name": "Operations Control",
+    "TargetUris:4:ResourceForAadAuthentication": "",
+
+    "TargetUris:5:Uri": "http://localhost:7076/swagger",
+    "TargetUris:5:Name": "Claims",
+    "TargetUris:5:ResourceForAadAuthentication": ""
+  }
+}
