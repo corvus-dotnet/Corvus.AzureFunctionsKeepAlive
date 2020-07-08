@@ -8,7 +8,6 @@ namespace Corvus.AzureFunctionsKeepAlive.Host.Internal
     using System.Net;
     using System.Threading.Tasks;
     using Corvus.Identity.ManagedServiceIdentity.ClientAuthentication;
-    using Microsoft.Build.Framework;
     using Microsoft.Extensions.Logging;
 
     /// <summary>
@@ -77,8 +76,8 @@ namespace Corvus.AzureFunctionsKeepAlive.Host.Internal
 
                 this.logger.LogInformation(
                     "Failed to request endpoint '{endpointName}'. Status code '{responseCode}' was returned in '{requestTime}'ms with message '{responseMessage}'",
-                    exceptionResponse.StatusCode,
                     target.Name,
+                    exceptionResponse.StatusCode,
                     sw.ElapsedMilliseconds,
                     exceptionResponse.StatusDescription);
             }
