@@ -39,7 +39,7 @@ namespace Corvus.AzureFunctionsKeepAlive.Host
         /// <param name="log">The logger to use.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         [FunctionName("Corvus-KeepAlive")]
-        public async Task Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)]TimerInfo myTimer, ILogger log)
+        public async Task Run([TimerTrigger("0 */3 * * * *", RunOnStartup = true)]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
