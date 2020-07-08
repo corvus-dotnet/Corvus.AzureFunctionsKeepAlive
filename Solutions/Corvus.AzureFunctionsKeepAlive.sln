@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevOps", "DevOps", "{8F9FF3
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corvus.AzureFunctionsKeepAlive.Specs", "Corvus.AzureFunctionsKeepAlive.Specs\Corvus.AzureFunctionsKeepAlive.Specs.csproj", "{1CE976D1-66D7-4A56-BE5D-B3C8FBAB16D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{B79226A6-58A4-4B82-8D91-165B96D5D1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B79226A6-58A4-4B82-8D91-165B96D5D1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B79226A6-58A4-4B82-8D91-165B96D5D1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE976D1-66D7-4A56-BE5D-B3C8FBAB16D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE976D1-66D7-4A56-BE5D-B3C8FBAB16D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE976D1-66D7-4A56-BE5D-B3C8FBAB16D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE976D1-66D7-4A56-BE5D-B3C8FBAB16D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -73,7 +73,7 @@ namespace Corvus.AzureFunctionsKeepAlive.Host.Internal
             }
             else
             {
-                this.logger.LogInformation(
+                this.logger.LogWarning(
                     "Failed to request endpoint '{endpointName}'. Status code '{responseCode}' was returned in '{requestTime}'ms.",
                     target.Name,
                     response.StatusCode,
