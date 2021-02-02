@@ -8,7 +8,6 @@ namespace Corvus.AzureFunctionsKeepAlive.Specs.Steps
     using System.Threading.Tasks;
     using Corvus.AzureFunctionsKeepAlive.Host.Internal;
     using Corvus.Testing.SpecFlow;
-    using Microsoft.Build.Framework;
     using Microsoft.Extensions.DependencyInjection;
     using NUnit.Framework;
     using TechTalk.SpecFlow;
