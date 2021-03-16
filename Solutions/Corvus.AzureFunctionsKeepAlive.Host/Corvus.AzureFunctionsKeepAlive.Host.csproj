@@ -6,7 +6,7 @@
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Corvus.Identity.ManagedServiceIdentity.ClientAuthentication" Version="1.0.3" />
+    <PackageReference Include="Corvus.Identity.ManagedServiceIdentity.ClientAuthentication" Version="1.0.4" />
     <PackageReference Include="Corvus.Monitoring.ApplicationInsights" Version="1.2.0" />
     <PackageReference Include="Endjin.RecommendedPractices" Version="1.2.0">
       <PrivateAssets>all</PrivateAssets>
