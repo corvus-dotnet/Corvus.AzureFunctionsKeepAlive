@@ -50,7 +50,10 @@ namespace Corvus.AzureFunctionsKeepAlive.Host
         /// <param name="log">The logger to use.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         [FunctionName("Corvus-KeepAlive")]
+#pragma warning disable RCS1163 // Unused parameter - required to enable the Functions behaviour we want
+#pragma warning disable IDE0060 // Remove unused parameter - required to enable the Functions behaviour we want
         public async Task Run([TimerTrigger("0 */3 * * * *", RunOnStartup = true)]TimerInfo myTimer, ILogger log)
+#pragma warning restore IDE0060, RCS1163
         {
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
