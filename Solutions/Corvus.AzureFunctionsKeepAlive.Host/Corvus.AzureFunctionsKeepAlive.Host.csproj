@@ -31,7 +31,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Corvus.Identity.ManagedServiceIdentity.ClientAuthentication" Version="1.0.7" />
+    <PackageReference Include="Corvus.Identity.ManagedServiceIdentity.ClientAuthentication" Version="2.0.2" />
     <PackageReference Include="Corvus.Monitoring.ApplicationInsights" Version="1.3.2" />
     <PackageReference Include="Endjin.RecommendedPractices.GitHub" Version="2.1.4">
       <PrivateAssets>all</PrivateAssets>
