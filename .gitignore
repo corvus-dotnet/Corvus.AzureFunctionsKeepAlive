@@ -340,3 +340,7 @@ coverage.cobertura.xml
 
 # SpecFlow generated feature files
 *.feature.cs
+
+# Migrate to scripted build
+_codeCoverage/
+*.sbom.*
