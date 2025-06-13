@@ -343,4 +343,6 @@ coverage.cobertura.xml
 
 # Migrate to scripted build
 _codeCoverage/
+_packages/
+.zf/extensions/
 *.sbom.*
